@@ -1,0 +1,77 @@
+/* 主题变量 */
+:root{
+    --primary:#4f46e5;--bg:#f9fafb;--text:#111;--card-bg:#ffffffcc;
+    --radius:1.25rem;--shadow:0 4px 16px rgba(0,0,0,.08)
+}
+body.dark{
+    --primary:#8b7dff;--bg:#151718;--text:#f4f4f4;--card-bg:#1e2123cc;
+    --shadow:0 4px 16px rgba(0,0,0,.6)
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;transition:background .3s,color .3s}
+.container{width:100%;max-width:960px;margin:0 auto;padding:1rem}
+
+/* 顶部栏 */
+.site-header{background:var(--card-bg);backdrop-filter:blur(4px);box-shadow:var(--shadow);position:sticky;top:0;z-index:99;transition:background .3s}
+.site-header .container{display:flex;align-items:center;gap:1.2rem}
+.logo{font-size:1.35rem;font-weight:700}
+.logo span{font-size:.85rem;color:var(--primary)}
+
+.nav-list{display:flex;gap:1.1rem;list-style:none}
+.nav-list a{position:relative;font-size:.95rem;font-weight:600;color:var(--text);text-decoration:none;cursor:pointer}
+.nav-list a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--primary);transition:.3s}
+.nav-list a.active,.nav-list a:hover{color:var(--primary)}
+.nav-list a.active::after,.nav-list a:hover::after{width:100%}
+
+#theme-toggle{margin-left:auto;font-size:1.2rem;background:none;border:none;cursor:pointer;color:var(--text);transition:transform .2s}
+#theme-toggle:hover{transform:rotate(-20deg)}
+#lang-toggle{font-size:.85rem;border:1px solid #d1d5db;padding:.3rem .7rem;border-radius:.5rem;background:none;color:var(--text);cursor:pointer}
+#lang-toggle:hover{background:#0000000a}
+
+/* 表单 */
+form{background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem;animation:fadeIn .6s}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.5rem}
+label{display:flex;flex-direction:column;font-size:.9rem}
+label.full{grid-column:1/-1}
+input,select{margin-top:.4rem;padding:.6rem .8rem;border:1px solid #d1d5db;border-radius:.5rem;font-size:1rem;background:transparent;color:var(--text);transition:border-color .2s}
+input:focus,select:focus{outline:none;border-color:var(--primary)}
+button{cursor:pointer;border:none;border-radius:.7rem;padding:.75rem 1.5rem;font-size:1rem;font-weight:600;transition:transform .15s}
+button.primary{background:var(--primary);color:#fff}
+button.ghost{background:none;color:var(--primary);margin-left:.5rem}
+button:hover{transform:translateY(-2px)}
+.history-actions{display:flex;gap:.6rem;margin-bottom:1rem}
+
+/* 卡片 */
+#result{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:2rem;opacity:0;transform:translateY(20px);transition:.4s}
+#result.show{opacity:1;transform:none}
+.card{background:var(--card-bg);border-radius:var(--radius);padding:1.4rem;text-align:center;box-shadow:var(--shadow);animation:slideUp .6s}
+.card h2{font-size:1.05rem;font-weight:600;margin-bottom:.5rem}
+.card .value{font-size:2.2rem;font-weight:700}
+
+/* 建议 */
+#advice{margin-top:2.2rem;opacity:0;transition:opacity .6s}
+#advice.show{opacity:1}
+#advice h2{font-size:1.2rem;font-weight:600;margin-bottom:.7rem}
+#advice-text{font-size:.95rem;line-height:1.6;white-space:pre-line;animation:typing 3s steps(40,end)}
+
+.table-wrapper{overflow-x:auto;margin-bottom:.5rem}
+#history-table{width:100%;border-collapse:collapse;min-width:520px}
+#history-table th,#history-table td{padding:.55rem 1rem;border-bottom:1px solid #3a3d3f15;text-align:center;font-size:.9rem}
+#history-table th{background:#00000005;color:var(--text)}
+#history-table td:last-child{width:52px}
+.delete-row{background:none;border:none;font-size:1rem;color:#f87171;cursor:pointer}
+
+#gw-progress{width:100%;height:14px;border-radius:8px;appearance:none}
+#gw-progress::-webkit-progress-bar{background:#00000014;border-radius:8px}
+#gw-progress::-webkit-progress-value{background:var(--primary);border-radius:8px}
+
+.muted{color:#777;font-size:.85rem;margin:1rem 0}
+.site-footer{text-align:center;padding:1rem 0;font-size:.8rem;color:#888}
+
+/* 动画 */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{transform:translateY(30px);opacity:.5}to{transform:none;opacity:1}}
+@keyframes typing{from{width:0}to{width:100%}}
+
+@media(max-width:600px){.nav-list{gap:.8rem}.logo{font-size:1.2rem}}
